@@ -18,6 +18,13 @@ module Tennis
     def wins_ball(winner)
       # TODO: Think it's gross to pass an integer instead of a player object?
       # Then reimplement this method!
+
+      if winner == 1
+        winning_player = @player1
+      elsif winner == 2
+        winning_player = @player2
+      end
+      winning_player.record_won_ball!
     end
   end
 
@@ -37,7 +44,21 @@ module Tennis
 
     # Returns the String score for the player.
     def score
-      return 'love' if @points == 0
+      while points < 3
+        if points == 0
+          return 'love' if @points == 0
+        elsif points == 1
+          return 'fifteen'
+        elsif points == 2
+          return 'thirty'
+        end
+      end
+
+      if player.opponent.score == 3 && player.score == 3
+        return 'deuce'
+      else
+        return "forty"
+      end
     end
   end
 end
