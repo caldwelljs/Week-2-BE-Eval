@@ -28,6 +28,8 @@ module Tennis
     end
   end
 
+
+
   class Player
     attr_accessor :points, :opponent
 
@@ -43,6 +45,21 @@ module Tennis
     end
 
     # Returns the String score for the player.
+    
+    def set_advantage
+      if player1.score > player2.score
+        return 'Advantage Player 1'
+      else
+        return 'Advantage Player 2'
+    end
+
+    def game_winner
+      if player1.score > player2.score
+        return 'Player 1 Wins'
+      else
+        return 'Player 2 Wins!'
+      end
+
     def score
       while points < 3
         if points == 0
@@ -54,10 +71,17 @@ module Tennis
         end
       end
 
-      if player.opponent.score == 3 && player.score == 3
+      if player.score > 2 && player.score == player.opponent.score
         return 'deuce'
-      else
-        return "forty"
+      elsif player.score > 2 && (player.score - player.opponent.score = 1)
+        if player1.score 
+        return set_advantage
+      elsif player.score > 2 && (player.score - player.opponent.score = -1)
+        return set_advantage
+      elsif player.score < player.score && (player.score - player.opponent.score = 2)
+        return game_winner
+      elsif player.score < player.score && (player.score - player.opponent.score = -2)
+        return game_winner
       end
     end
   end
