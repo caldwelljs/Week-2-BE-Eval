@@ -72,10 +72,76 @@ describe Tennis::Player do
       end
     end
     
-    context 'when points is 3' do
-      it 'returns "forty" if the scores are unequal'
+    context 'when both players have 3 points' do
+      it 'returns deuce' do
+        player.points = 3
+        player.opponent.points = 3
 
-      it 'returns "deuce" if the scores are equal' 
+        expect(player.score).to eq('deuce')
+      end
+    end
+
+    context 'when player 1 has 4 points and player 2 has 3' do
+      it 'returns Advantage Player 1' do
+        player.points = 4
+        player.opponent.points = 3
+
+        expect(player.score).to eq('Advantage Player 1')
+      end
+    end
+    
+    context 'when player 2 has 4 points and player 1 has 3' do
+      it 'returns Advantage Player 2' do
+        player.points = 3
+        player.opponent.points = 4
+
+        expect(player.score).to eq('Advantage Player 2')
+      end
+    end
+
+    context 'when player 1 has 5 points and player 2 has 3' do
+      it 'returns Player 1 Wins' do
+        player.points = 5
+        player.opponent.points = 3
+
+        expect(player.score).to eq('Player 1 Wins')
+      end
+    end
+
+    context 'when player 2 has 5 points and player 1 has 3' do
+      it 'returns Player 2 Wins' do
+        player.points = 3
+        player.opponent.points = 5
+
+        expect(player.score).to eq('Player 2 Wins')
+      end
+    end
+
+    context 'when player 1 has 7 points and player 2 has 6' do
+      it 'returns Advantage Player 1' do
+        player.points = 7
+        player.opponent.points = 6
+
+        expect(player.score).to eq('Advantage Player 1')
+      end
+    end
+
+    context 'when player 2 has 7 points and player 1 has 6' do
+      it 'returns Advantage Player 2' do
+        player.points = 6
+        player.opponent.points = 7
+
+        expect(player.score).to eq('Advantage Player 2')
+      end
+    end
+
+    context 'when player 2 has 7 points and player 1 has 7' do
+      it 'returns deuce' do
+        player.points = 7
+        player.opponent.points = 7
+
+        expect(player.score).to eq('deuce')
+      end
     end
   end
 end

@@ -1,3 +1,4 @@
+require 'pry'
 module Tennis
   class Game
     attr_accessor :player1, :player2
@@ -47,23 +48,25 @@ module Tennis
     # Returns the String score for the player.
     
     def set_advantage
-      if player1.score > player2.score
+      if points > opponent.points
         return 'Advantage Player 1'
       else
         return 'Advantage Player 2'
+      end
     end
 
     def game_winner
-      if player1.score > player2.score
+      if points > opponent.points
         return 'Player 1 Wins'
       else
-        return 'Player 2 Wins!'
+        return 'Player 2 Wins'
       end
+    end
 
     def score
       while points < 3
         if points == 0
-          return 'love' if @points == 0
+          return 'love'
         elsif points == 1
           return 'fifteen'
         elsif points == 2
@@ -71,18 +74,20 @@ module Tennis
         end
       end
 
-      if player.score > 2 && player.score == player.opponent.score
-        return 'deuce'
-      elsif player.score > 2 && (player.score - player.opponent.score = 1)
-        if player1.score 
-        return set_advantage
-      elsif player.score > 2 && (player.score - player.opponent.score = -1)
-        return set_advantage
-      elsif player.score < player.score && (player.score - player.opponent.score = 2)
-        return game_winner
-      elsif player.score < player.score && (player.score - player.opponent.score = -2)
-        return game_winner
+      while points >= 3
+        if points == opponent.points
+          return 'deuce'
+        elsif points - opponent.points == 1
+          return set_advantage
+        elsif points - opponent.points == -1
+          return set_advantage
+        elsif points - opponent.points == 2
+          return game_winner
+        elsif points - opponent.points == -2
+          return game_winner
+        end
       end
+
     end
   end
 end
