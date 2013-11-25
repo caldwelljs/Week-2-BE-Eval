@@ -13,8 +13,8 @@ describe Tennis::Game do
     end
 
     it 'sets the opponent for each player' do
-      expect(game.player1.opponent).to eq(game.player2)
-      expect(game.player2.opponent).to eq(game.player1)
+      expect(game.player1.opponent).to eq (game.player2)
+      expect(game.player2.opponent).to eq (game.player1)
     end
   end
 
@@ -24,6 +24,35 @@ describe Tennis::Game do
 
       expect(game.player1.points).to eq(1)
     end
+  end
+
+  # describe '#wins_ball for player1' do
+  #   it "increments player1's points by 1" do
+  #     @player1.record_won_ball!
+
+  #     expect(@player1.points).to eq(1)
+  #   end
+  # end
+
+  describe 'game score' do
+    context 'when the game is tied at 15' do
+      it 'returns "15 all"' do
+        game.player1.points = 1
+        game.player2.points = 1
+
+        expect(game.game_score).to eq ('fifteen all!')
+      end
+    end
+
+    context 'when the game is tied at 30' do
+      it 'returns "30 all"' do
+        game.player1.points = 2
+        game.player2.points = 2
+
+        expect(game.game_score).to eq ('thirty all!')
+      end
+    end
+      # it 'sets game score to 30 all' do
   end
 end
 
@@ -143,5 +172,7 @@ describe Tennis::Player do
         expect(player.score).to eq('deuce')
       end
     end
+
+
   end
 end

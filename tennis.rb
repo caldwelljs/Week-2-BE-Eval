@@ -1,10 +1,10 @@
 module Tennis
   class Game
-    attr_accessor :player1, :player2
+    attr_accessor :player1, :player2, :score
 
     def initialize
-      @player1 = Player.new
-      @player2 = Player.new
+      @player1 = Player.new("Player1 Pete")
+      @player2 = Player.new("Player2 Andre")
 
       @player1.opponent = @player2
       @player2.opponent = @player1
@@ -28,60 +28,14 @@ module Tennis
     end
     
     def game_score
+      if @player1.points == @player2.points && @player1.points < 3
+        return "#{@player1.score} all!"
+      end
     end
   end
 
-  
-
-  # class Player
-  #   attr_accessor :points, :opponent, :name
-
-  #   def initialize(name)
-  #     @points = 0
-  #     @name = name
-  #   end
-
-  #   # Increments the score by 1.
-  #   #
-  #   # Returns the integer new score.
-  #   def record_won_ball!
-  #     @points += 1
-  #     return @points
-  #   end
-
-  #   # Returns the String score for the player.
-  #   # Tracks and returns player scores
-  #   def score
-  #     while points < 3
-  #       return 'love' if points == 0
-  #       return 'fifteen' if points == 1
-  #       return 'thirty' if points == 2
-  #       end
-  #     end
-
-  #     while points >= 3
-  #       if points == 3 && opponent.points < 3
-  #         return 'forty'
-  #       elsif points == opponent.points
-  #         return 'deuce'
-  #       elsif points - opponent.points == 1
-  #         return "Advantage #{player.name}"
-  #       elsif points - opponent.points == -1
-  #         return "Advantage #{opponent.name}"
-  #       elsif points - opponent.points == 2
-  #         return "Game: #{self.name}"
-  #       elsif points - opponent.points == -2
-  #         return "Game: #{self.opponent.name}"
-  #       end
-
-  #     end
-
-  #   end
-  # end
-
-
-    class Player
-    attr_accessor :points, :opponent, :name
+  class Player
+  attr_accessor :points, :opponent, :name
 
     def initialize(name)
       @points = 0
@@ -94,24 +48,6 @@ module Tennis
     def record_won_ball!
       @points += 1
       return @points
-    end
-
-    # Returns the String score for the player.
-    
-    def set_advantage
-      if points > opponent.points
-        return 'Advantage Player 1'
-      else
-        return 'Advantage Player 2'
-      end
-    end
-
-    def game_winner
-      if points > opponent.points
-        return 'Player 1 Wins'
-      else
-        return 'Player 2 Wins'
-      end
     end
 
     def score
