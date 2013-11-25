@@ -1,7 +1,11 @@
 module Tennis
+  # Public: A Class containing the elements of a game of tennis.
   class Game
     attr_accessor :player1, :player2, :score
 
+    # Public: Initializes a game of tennis with two players set as opponents. 
+    # 
+    # Called automatically when a new Game Object is created.
     def initialize
       @player1 = Player.new("Player1 Pete")
       @player2 = Player.new("Player2 Andre")
@@ -10,14 +14,12 @@ module Tennis
       @player2.opponent = @player1
     end
 
-    # Records a win for a ball in a game.
+    # PublicRecords a win for a ball in a game.
     #
     # winner - The Integer (1 or 2) representing the winning player.
     #
     # Returns the score of the winning player. 
     def wins_ball(winner)
-      # TODO: Think it's gross to pass an integer instead of a player object?
-      # Then reimplement this method!
       if winner == 1
         winning_player = @player1
       elsif winner == 2
@@ -26,7 +28,14 @@ module Tennis
       
       winning_player.record_won_ball!
     end
-    
+
+    # Public: Returns the score of the game in tennis style naming
+    #
+    #     Example
+    #     # => When player 2 has 7 points and player 1 has 7:
+    #     # =>    returns => "deuce"
+    #
+    # Returns game scores as strings
     def game_score
       if @player1.points == @player2.points && @player1.points < 3
         return "#{@player1.score} all!"
@@ -43,9 +52,16 @@ module Tennis
     end
   end
 
+# Public: The Player Class descibes a player with attributes for points, 
+#    #    opponent, and name
   class Player
   attr_accessor :points, :opponent, :name
 
+#   # Public: Creates a Player Object with a name and points set to 0.
+#   #
+#   # name - The String that will become the name of the Player.
+#   #
+#   # Returns nothing
     def initialize(name)
       @points = 0
       @name = name
@@ -59,6 +75,9 @@ module Tennis
       return @points
     end
 
+    # Tracks the player's score and assigns tennis naming as a string to score.
+    # 
+    # Returns the string name of score.
     def score
       while points < 3
         if points == 0
