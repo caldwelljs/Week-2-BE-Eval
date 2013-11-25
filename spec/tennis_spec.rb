@@ -29,8 +29,8 @@ end
 
 describe Tennis::Player do
   let(:player) do
-    player = Tennis::Player.new
-    player.opponent = Tennis::Player.new
+    player = Tennis::Player.new("Pete")
+    player.opponent = Tennis::Player.new("Andre")
 
     return player
   end
@@ -55,7 +55,7 @@ describe Tennis::Player do
         expect(player.score).to eq('love')
       end
     end
-    
+
     context 'when points is 1' do
       it 'returns fifteen' do
         player.points = 1
@@ -63,7 +63,7 @@ describe Tennis::Player do
         expect(player.score).to eq('fifteen')
       end 
     end
-    
+
     context 'when points is 2' do
       it 'returns thirty' do
         player.points = 2
@@ -82,20 +82,20 @@ describe Tennis::Player do
     end
 
     context 'when player 1 has 4 points and player 2 has 3' do
-      it 'returns Advantage Player 1' do
+      it 'returns Advantage: Pete' do
         player.points = 4
         player.opponent.points = 3
 
-        expect(player.score).to eq('Advantage Player 1')
+        expect(player.score).to eq('Advantage: Pete')
       end
     end
     
     context 'when player 2 has 4 points and player 1 has 3' do
-      it 'returns Advantage Player 2' do
+      it 'returns Advantage: Andre' do
         player.points = 3
         player.opponent.points = 4
 
-        expect(player.score).to eq('Advantage Player 2')
+        expect(player.score).to eq('Advantage: Andre')
       end
     end
 
@@ -104,7 +104,7 @@ describe Tennis::Player do
         player.points = 5
         player.opponent.points = 3
 
-        expect(player.score).to eq('Player 1 Wins')
+        expect(player.score).to eq('Game: Pete')
       end
     end
 
@@ -113,7 +113,7 @@ describe Tennis::Player do
         player.points = 3
         player.opponent.points = 5
 
-        expect(player.score).to eq('Player 2 Wins')
+        expect(player.score).to eq('Game: Andre')
       end
     end
 
@@ -122,7 +122,7 @@ describe Tennis::Player do
         player.points = 7
         player.opponent.points = 6
 
-        expect(player.score).to eq('Advantage Player 1')
+        expect(player.score).to eq('Advantage: Pete')
       end
     end
 
@@ -131,7 +131,7 @@ describe Tennis::Player do
         player.points = 6
         player.opponent.points = 7
 
-        expect(player.score).to eq('Advantage Player 2')
+        expect(player.score).to eq('Advantage: Andre')
       end
     end
 
