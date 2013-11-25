@@ -52,7 +52,33 @@ describe Tennis::Game do
         expect(game.game_score).to eq ('thirty all!')
       end
     end
-      # it 'sets game score to 30 all' do
+
+    context 'when the game is tied at 40' do
+      it 'returns "duece"' do
+        game.player1.points = 3
+        game.player2.points = 3
+
+        expect(game.game_score).to eq ('Deuce!')
+      end
+    end
+
+    context 'when player 1 has 15 and player 2 has zero' do
+      it 'returns "fifteen love"' do
+        game.player1.points = 1
+        game.player2.points = 0
+
+        expect(game.game_score).to eq ('fifteen love')
+      end
+    end
+    
+    context 'when player 1 has 5 and player 2 has 3' do
+      it 'returns "Pete wins"' do
+        game.player1.points = 5
+        game.player2.points = 3
+
+        expect(game.game_score).to eq ('Pete wins')
+      end
+    end
   end
 end
 

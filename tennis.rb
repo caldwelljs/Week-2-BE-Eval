@@ -30,7 +30,16 @@ module Tennis
     def game_score
       if @player1.points == @player2.points && @player1.points < 3
         return "#{@player1.score} all!"
+      elsif @player1.points == @player2.points && player2.points >= 3
+        return "Deuce!"
+      elsif @player1.points - @player2.points == 2
+        return "#{@player1.name} wins"
+      elsif @player2.points - @player1.points == 2
+        return "#{@player2.name} wins"
+      else
+        return "#{@player1.score} #{@player2.score}"
       end
+
     end
   end
 
